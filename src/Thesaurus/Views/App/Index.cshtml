@@ -1,0 +1,42 @@
+﻿@{
+    //ViewData["Title"] = "Home Page";
+
+    ViewBag.Title = "Home Page";
+}
+<style>
+    .glyphicon {
+        font-size: 4em;
+    }
+</style>
+
+<div class="row text-center">
+    <h1 style="font-size:4em;">Personal Thesaurus</h1><hr />
+    <p class="text-muted">Build your vocabulary</p>
+    <a asp-action="index" asp-controller="" class="btn btn-primary btn-lg">
+        Check out your personal thesaurus.
+    </a>
+</div>
+<div class="container-fluid">
+    <section id="About">
+        <div class="row">
+            <div class="col-xs-16 col-sm-8 col-md-4 text-center">
+                <span class="glyphicon glyphicon-book text-primary"></span>
+                <h3>Add New Words</h3>
+                <p class="text-muted">Found a word in a book you are reading - Add it!</p>
+            </div>
+
+
+            <div class="col-xs-16 col-sm-8 col-md-4 text-center">
+                <span class="glyphicon glyphicon-edit text-primary"></span>
+                <h3>Edit your Thesaurus</h3>
+                <p class="text-muted">Add a synonym or picture!</p>
+            </div>
+
+            <div class="col-xs-16 col-sm-8 col-md-4 text-center">
+                <span class="glyphicon glyphicon-education text-primary"></span>
+                <h3>Check your Progress</h3>
+                <p class="text-muted">How are you doing? Find out here!</p>
+            </div>
+        </div>
+    </section>
+</div>
