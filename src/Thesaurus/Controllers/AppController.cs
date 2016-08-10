@@ -4,21 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Thesaurus.Data;
+using Thesaurus.Models;
 
 namespace Thesaurus.Controllers
 {
     public class AppController : Controller
     {
-        private ApplicationDbContext _context;
+       
+        private IRepository _repository;
 
-        public AppController(ApplicationDbContext context)
+        public AppController(IRepository repository)
         {
-            _context = context;
+            _repository = repository;
 
         }
         public IActionResult Index()
         {
-            var data = _context.Vocabulary.ToList();
+            var data = _repository.GetVocab();
             return View(data);
         }
     }

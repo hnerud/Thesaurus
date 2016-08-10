@@ -17,9 +17,11 @@ namespace Thesaurus.Models
         }
         public async Task EnsureSeedData()
         {
-            if (!_context.Vocabulary.Any())
+            if (_context.Vocabulary.Any())
             {
-                var vocab = new Vocabulary();
+                return;
+            }
+            var vocab = new Vocabulary();
                 {
                     vocab.term = "idyllic";
 
@@ -29,16 +31,16 @@ namespace Thesaurus.Models
 
                         new ContextTerm() {term = "bucolic", type = "advanced"}
 
-                    }; 
+                    };
                 };
                 _context.Vocabulary.Add(vocab);
                 _context.ContextTerm.AddRange(vocab.contextTerms);
-            }
-            var morevocab = new Vocabulary();
-            {
-                morevocab.term = "conformity";
 
-                morevocab.contextTerms = new List<ContextTerm>()
+                var morevocab = new Vocabulary();
+                {
+                    morevocab.term = "conformity";
+
+                    morevocab.contextTerms = new List<ContextTerm>()
                 {
                     new ContextTerm() {term = "same", type = "basic"},
 
@@ -46,11 +48,12 @@ namespace Thesaurus.Models
 
 
                 };
-            };
-            _context.Vocabulary.Add(morevocab);
-            _context.ContextTerm.AddRange(morevocab.contextTerms);
+                };
+                _context.Vocabulary.Add(morevocab);
+                _context.ContextTerm.AddRange(morevocab.contextTerms);
 
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
+            
         }
     }
 }

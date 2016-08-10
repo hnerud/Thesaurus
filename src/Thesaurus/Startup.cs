@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Thesaurus.Data;
 using Thesaurus.Models;
 using Thesaurus.Services;
+using Newtonsoft.Json.Serialization;
+using AutoMapper;
 
 namespace Thesaurus
 {
@@ -46,8 +48,14 @@ namespace Thesaurus
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IRepository, Repository>();
             services.AddTransient<SeedData>();
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(config =>
+                {
+                    config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -57,6 +65,12 @@ namespace Thesaurus
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, SeedData seeder)
         {
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<VocabViewModel, Vocabulary>().ReverseMap();
+                config.CreateMap<ContextTermViewModel, ContextTerm>().ReverseMap();
+
+            });
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 

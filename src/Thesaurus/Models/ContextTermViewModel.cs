@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Thesaurus.Models
 {
-    public class Vocabulary
+    public class ContextTermViewModel
     {
-        public int ID { get; set; }
-        
+        [Required]
+        [StringLength(20, MinimumLength = 3)]
         public string term { get; set; }
-        public virtual ICollection<ContextTerm> contextTerms { get; set; }
+        public string type { get; set; }
     }
 }
