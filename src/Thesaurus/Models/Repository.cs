@@ -17,6 +17,17 @@ namespace Thesaurus.Models
 
         }
 
+        public void AddContextTerm(string vocab, ContextTerm newContextTerm)
+        {
+            var vocabTerm = GetAssociatedVocab(vocab);
+
+            if(vocabTerm != null)
+            {
+                vocabTerm.contextTerms.Add(newContextTerm);
+                _context.ContextTerm.Add(newContextTerm);
+            }
+        }
+
         public void AddVocab(Vocabulary newTerm)
         {
             _context.Add(newTerm);
@@ -26,7 +37,7 @@ namespace Thesaurus.Models
         {
             return _context.Vocabulary
                 .Include(v => v.contextTerms)
-                .Where(v => v.term ==vocab)
+                .Where(v => v.term == vocab)
                 .FirstOrDefault();
         }
 

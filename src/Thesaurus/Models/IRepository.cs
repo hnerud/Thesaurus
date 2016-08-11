@@ -8,6 +8,8 @@ namespace Thesaurus.Models
         IEnumerable<Vocabulary> GetVocab();
         Vocabulary GetAssociatedVocab(string vocab);
         void AddVocab(Vocabulary newTerm);
+        void AddContextTerm(string vocab, ContextTerm newContextTerm);
         Task<bool> SaveChangesAsync();
+        
     }
 }

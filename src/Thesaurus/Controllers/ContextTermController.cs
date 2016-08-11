@@ -37,5 +37,34 @@ namespace Thesaurus.Controllers
             }
             return BadRequest("Failed to get Context Terms");
         }
+        [HttpPost("")]
+        public async Task <IActionResult> Post(string Vocab,[FromBody]ContextTermViewModel vm)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var newContextTerm = Mapper.Map<ContextTerm>(vm);
+
+                    _repository.AddContextTerm(Vocab, newContextTerm);
+
+                    if (await _repository.SaveChangesAsync())
+                    {
+                        return Created($"Vocabulary/{Vocab}/contextTerms/{newContextTerm.term}",
+                            Mapper.Map<ContextTermViewModel>(newContextTerm));
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to save new context term: {0}", ex);
+
+            }
+            return BadRequest("Failed to save context term");
+            
+
+        }
     }
 }
