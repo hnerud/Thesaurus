@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Thesaurus.Data;
 using Thesaurus.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Thesaurus.Controllers
 {
@@ -18,10 +19,11 @@ namespace Thesaurus.Controllers
             _repository = repository;
 
         }
+        
         public IActionResult Index()
         {
-            var data = _repository.GetVocab();
-            return View(data);
+           
+            return View();
         }
     }
 }

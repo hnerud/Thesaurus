@@ -11,7 +11,7 @@
             templateUrl:"/views/vocabView.html"
         });
 
-        $routeProvider.when("/editor", {
+        $routeProvider.when("/editor/:vocabTerm", {
             controller: "vocabularyEditorController",
             controllerAs: "vm",
             templateUrl: "/views/vocabularyEditorView.html"

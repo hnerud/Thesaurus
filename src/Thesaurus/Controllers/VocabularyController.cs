@@ -9,6 +9,7 @@ using AutoMapper;
 using System.Collections;
 using Microsoft.Extensions.Logging;
 using NuGet.Common;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Thesaurus.Controllers
 {
@@ -41,6 +42,7 @@ namespace Thesaurus.Controllers
         }
 
     // POST: api/Vocabulary
+    
     [HttpPost("")]
         public async Task<IActionResult> Post([FromBody]VocabViewModel value)
         {

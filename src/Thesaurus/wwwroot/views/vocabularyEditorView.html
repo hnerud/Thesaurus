@@ -1,25 +1,55 @@
 ﻿<div>
-    <div class="col-md-6">
-        <h1>Thesaurus</h1>
-        <form>
-            <div class="form-group">
-                <label>Term</label>
-                <input class="form-control" />
-            </div>
-            <div> <input type="submit" value="Add" class="btn btn-success" /></div>
-        </form>
+    <div>
+        <a href="#/" class="btn btn-sm btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>Back
+        </a>
+        </div>
+        <div class="col-md-3">
+            <h2>{{vm.vocabTerm}}</h2>
+            <div ng-show="vm.isBusy" class="text-center">loading...</div>
+            <div class="alert alert-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
 
 
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <th>Synonym</th>
+                    <th>Level</th>
+                </tr>
+                <tr ng-repeat="contextTerm in vm.contextTerms">
+                    <td>{{contextTerm.term}}</td>
+                    <td>{{contextTerm.type}}</td>
+                </tr>
 
+
+            </table>
+
+            <form novalidate name="newSynonymForm" ng-submit="vm.addSynonym()">
+                <div class="form-group">
+                    <label>New Synonym</label>
+                    <input class="form-control" type="text" id="term" name="term"
+                           ng-model="vm.newContextTerm.term" ng-minlength="3" />
+                    <p ng-show="newSynonymForm.synonym.$error.minlength"
+                       class="text-warning">Term must be at least 3 characters</p>
+                    <label>Level</label>
+                    <input class="form-control" type="text" id="type" name="type"
+                           ng-model="vm.newContextTerm.type" />
+
+                </div>
+                <div>
+                    <input type="submit" value="Add" class="btn btn-success btn-sm"
+                           ng-disabled="newSynonymForm.$invalid" />
+                </div>
+            </form>
+
+        </div>
+
+
+        <!--<div class="col-md-9">
+            <h1>Picture</h1>
+
+
+        </div>-->
     </div>
-
-
-    <div class="col-md-6">
-        <h1>Picture</h1>
-
-
-    </div>
-</div>
 
 
 
