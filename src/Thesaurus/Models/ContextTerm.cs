@@ -10,5 +10,14 @@ namespace Thesaurus.Models
         public int ID { get; set; }
         public string term { get; set; }
         public string type { get; set; }
+
     }
+
+    //    public Type type { get; set; }
+
+//}
+//public enum Type
+//{
+//    basic, intermediate, advanced
+//}
 }
