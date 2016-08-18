@@ -22,25 +22,36 @@ namespace Thesaurus.Models
                 return;
             }
             var vocab = new Vocabulary();
-                {
-                    vocab.term = "idyllic";
+            {
+                vocab.term = "idyllic";
+                vocab.imagePath = "/images.idyllic.jpg";
 
-                    vocab.contextTerms = new List<ContextTerm>()
+                vocab.contextTerms = new List<ContextTerm>()
                     {
                         new ContextTerm() {term = "pleasant", type = "basic"},
 
                         new ContextTerm() {term = "bucolic", type = "advanced"}
 
                     };
-                };
-                _context.Vocabulary.Add(vocab);
-                _context.ContextTerm.AddRange(vocab.contextTerms);
 
-                var morevocab = new Vocabulary();
-                {
-                    morevocab.term = "conformity";
+                //vocab.image = new Image()
+                //{
+                //    size = 6,
+                //    fileName = "conformity.jpg",
+                //    imagePath = "/images/conformity.jpg"
+                //};
 
-                    morevocab.contextTerms = new List<ContextTerm>()
+            };
+            _context.Vocabulary.Add(vocab);
+            _context.ContextTerm.AddRange(vocab.contextTerms);
+            //_context.Image.AddRange(vocab.image);
+
+            var morevocab = new Vocabulary();
+            {
+                morevocab.term = "conformity";
+                morevocab.imagePath = "/images/Conformity.jpg";
+
+                morevocab.contextTerms = new List<ContextTerm>()
                 {
                     new ContextTerm() {term = "same", type = "basic"},
 
@@ -48,11 +59,20 @@ namespace Thesaurus.Models
 
 
                 };
-                };
-                _context.Vocabulary.Add(morevocab);
-                _context.ContextTerm.AddRange(morevocab.contextTerms);
+                //morevocab.image = new Image()
+                //{
+                //    size = 6,
+                //    fileName = "conformity.jpg",
+                //    imagePath = "/images/conformity.jpg"
+                //};
+            };
+            _context.Vocabulary.Add(morevocab);
+            _context.ContextTerm.AddRange(morevocab.contextTerms);
+            //_context.Image.AddRange(morevocab.image);
 
-                await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+
+
             
         }
     }

@@ -8,9 +8,10 @@ using Thesaurus.Data;
 namespace Thesaurus.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160818153728_image")]
+    partial class image
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -211,11 +212,13 @@ namespace Thesaurus.Data.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("imagePath");
+                    b.Property<int?>("imageID");
 
                     b.Property<string>("term");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("imageID");
 
                     b.ToTable("Vocabulary");
                 });
@@ -262,6 +265,13 @@ namespace Thesaurus.Data.Migrations
                     b.HasOne("Thesaurus.Models.Vocabulary")
                         .WithMany("contextTerms")
                         .HasForeignKey("VocabularyID");
+                });
+
+            modelBuilder.Entity("Thesaurus.Models.Vocabulary", b =>
+                {
+                    b.HasOne("Thesaurus.Models.Image", "image")
+                        .WithMany()
+                        .HasForeignKey("imageID");
                 });
         }
     }

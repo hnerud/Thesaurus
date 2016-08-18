@@ -12,6 +12,6 @@ namespace Thesaurus.Models
         
         public string term { get; set; }
         public virtual ICollection<ContextTerm> contextTerms { get; set; }
-        //public Image image { get; set; }
+        public string imagePath { get; set; }
     }
 }
