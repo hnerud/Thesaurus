@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Thesaurus.Controllers
 {
+    [Authorize]
     public class AppController : Controller
     {
        
