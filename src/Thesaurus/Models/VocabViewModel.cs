@@ -11,5 +11,6 @@ namespace Thesaurus.Models
         [Required]
         [StringLength(20, MinimumLength = 3)]
         public string term { get; set; }
+        public string imagePath { get; set; }
     }
 }
