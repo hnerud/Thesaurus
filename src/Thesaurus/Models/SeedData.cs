@@ -24,7 +24,7 @@ namespace Thesaurus.Models
             var vocab = new Vocabulary();
             {
                 vocab.term = "idyllic";
-                vocab.imagePath = "/images.idyllic.jpg";
+                vocab.imagePath = "/images/idyllic.jpg";
 
                 vocab.contextTerms = new List<ContextTerm>()
                     {

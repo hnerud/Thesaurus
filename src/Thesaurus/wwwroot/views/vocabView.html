@@ -8,6 +8,7 @@
     <table class="table table-responsive table-striped">
         <tr ng-repeat="terms in vm.term">
             <td>{{terms.term}}</td>
+            <td><img src={{terms.imagePath}} alt="matching image" height="30" width="30"></td>
             <td><a ng-href="#/editor/{{terms.term}}" class="btn btn-sm btn-primary">Synonyms</a></td>
         </tr>
     </table>
